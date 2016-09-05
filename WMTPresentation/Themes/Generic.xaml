@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:WMPPresentation.Themes">
+    <!-- Main Background Color -->
+    <Color x:Key="MainBGColor">#513A96</Color>
+    <SolidColorBrush x:Key="MainBGColorBrush"
+                     Color="{StaticResource MainBGColor}" />
+
+    <!-- Menu Background Color -->
+    <Color x:Key="MenuBGColor">#25344B</Color>
+    <SolidColorBrush x:Key="MenuBGColorBrush"
+                     Color="{StaticResource MenuBGColor}" />
+
+    <!-- Menu Icon Color -->
+    <Color x:Key="MenuIconColor">#4A6983</Color>
+    <SolidColorBrush x:Key="MenuIconColorBrush"
+                     Color="{StaticResource MenuIconColor}" />
+    <!-- Menu List View Item -->
+    <Style x:Key="MenuListViewItem"
+           TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="Background"
+                Value="{StaticResource MenuBGColorBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <ListViewItemPresenter ContentMargin="{TemplateBinding Padding}"
+                                           CheckMode="Inline"
+                                           Foreground="{StaticResource MenuIconColorBrush}"
+                                           Background="{StaticResource MenuBGColorBrush}"
+                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           PointerOverForeground="#FFFFFF"
+                                           SelectedPressedBackground="{StaticResource  MainBGColorBrush}"
+                                           SelectionCheckMarkVisualEnabled="True"
+                                           SelectedForeground="White"
+                                           SelectedPointerOverBackground="{StaticResource MainBGColorBrush}"
+                                           SelectedBackground="{StaticResource  MainBGColorBrush}"
+                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

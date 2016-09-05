@@ -1,0 +1,148 @@
+﻿<Page
+    x:Class="WMTPresentation.Views.PresentationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WMTPresentation.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:WMTPresentation.Services.Dto"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <TextBox x:Name="EmailTextBox" 
+                            Header="Login:"
+                            Width="180"
+                            Text="mik@mik.pz"
+                            VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="PasswordTextBox" 
+                            Header="Password:"
+                            Width="180"
+                            Margin="20,0,0,0"
+                            Text="wmt0nline" 
+                            VerticalAlignment="Bottom"/>
+                    <Button x:Name="GetTokenButton" 
+                            Content="Get token" 
+                            Margin="20,0,0,0"
+                            Width="180"
+                            Click="GetTokenButton_Click"
+                            VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <TextBlock x:Name="TokenTextBlock" 
+                           Grid.Row="1"
+                           Margin="10" 
+                           Text="Click 'Get token' button to get authorization token" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                           TextWrapping="Wrap"/>
+            </Grid>
+            <Border Grid.Row="1"
+                        BorderBrush="#33415B"
+                        Height="2"
+                        Margin="0"
+                        VerticalAlignment="Top"
+                        BorderThickness="0,0,0,1" />
+            <Grid Grid.Row="2" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button x:Name="GetPresentationsListButton" 
+                        Content="Get and Save Presentations List" 
+                        Click="GetPresentationsListButton_Click"
+                        VerticalAlignment="Bottom"
+                        IsEnabled="False"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="60,0,0,0">
+                    <TextBox x:Name="PresentationIdTextBox" 
+                             Header="Input presentation ID:"
+                             Text="563c8435bb1391f92442e86c" 
+                             MinWidth="250"
+                             VerticalAlignment="Bottom"/>
+                    <Button x:Name="GetPresentationByIdButton" 
+                            Content="Get and Save Presentation By ID" 
+                            VerticalAlignment="Bottom"
+                            Margin="20,0,0,0"
+                            Click="GetPresentationByIdButton_Click"
+                            IsEnabled="False"
+                            />
+                </StackPanel>
+            </Grid>
+            <Border Grid.Row="3" 
+                        BorderBrush="#33415B"
+                        Height="2"
+                        Margin="0"
+                        VerticalAlignment="Top"
+                        BorderThickness="0,0,0,1" />
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListView ItemsSource="{x:Bind PresentationsList}"
+                          ItemClick="PresentationListView_ItemClick" 
+                          IsItemClickEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:PresentationDto">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,10,0">
+                                <Grid VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0,0,40,0" />
+                                        </Style>
+                                    </Grid.Resources>
+                                    <TextBlock Text="{x:Bind _id}"/>
+                                    <TextBlock Text="{x:Bind Title}" Grid.Column="1"/>
+                                    <TextBlock Text="{x:Bind CreatedAt}" Grid.Column="2"/>
+                                    <TextBlock Text="{x:Bind DefaultFontSize}" Grid.Column="3"/>
+                                </Grid>
+                            </StackPanel>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                    <TextBlock Name="PresentationDetailsTitleTextBlock" 
+                               FontSize="14" 
+                               Foreground="Red" 
+                               FontWeight="Bold" 
+                               Margin="20,20,0,0" 
+                               TextWrapping="Wrap"/>
+                    <TextBlock Name="PresentationThumbnailTextBlock" 
+                               FontSize="14" 
+                               Foreground="Red" 
+                               FontWeight="Bold" 
+                               Margin="20,20,0,0" 
+                               TextWrapping="Wrap"/>
+                    <TextBlock Name="PresentationChaptersCountTextBlock" 
+                               Text="Click table row to get details..."
+                               FontSize="14" 
+                               Foreground="Red" 
+                               FontWeight="Bold" 
+                               Margin="20,20,0,0" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
